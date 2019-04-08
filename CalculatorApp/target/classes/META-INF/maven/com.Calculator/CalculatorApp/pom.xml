@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.Calculator</groupId>
+  <artifactId>CalculatorApp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>CalculatorApp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-compiler-plugin</artifactId>
+         <version>3.8.0</version>
+           <configuration>
+             <source>1.8</source>
+             <target>1.8</target>
+           </configuration>
+      </plugin>
+  
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+         <version>1.4.1</version>
+            <executions>
+					     <execution>
+					      	<id>enforce-java</id>
+					        	<goals>
+					        		<goal>enforce</goal>
+					        	</goals>
+					         	<configuration>
+						        	<rules>
+						        		<requireJavaVersion>
+								      	  <version>[1.8,)</version>
+								        </requireJavaVersion>
+							       </rules>
+					       	</configuration>
+				      	</execution>
+			    	</executions>
+      </plugin>
+      
+     <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+             <executions>
+               <execution>
+                 <id>deploy-file</id>
+                 <phase>deploy</phase>
+                  <goals>
+                    <goal>deploy</goal>
+                    <goal>deploy-file</goal>
+                   </goals>
+                    <configuration>
+                <file>C:\Program Files (x86)\Jenkins\workspace\TestJob123\target\CalculatorApp-0.0.1-SNAPSHOT.jar</file>
+                <url>http://localhost:8081/artifactory/Snapshot</url>
+                <groupId>com.Calculator</groupId>
+                <artifactId>CalculatorApp</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <packaging>jar</packaging>
+                  </configuration>
+               </execution>
+          </executions> 
+     </plugin>  
+    </plugins>
+  </build>
+  
+<distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>Jayant-PC-releases</name>
+        <url>http://localhost:8081/artifactory/Release</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>Jayant-PC-snapshots</name>
+        <url>http://localhost:8081/artifactory/Snapshot</url>
+    </snapshotRepository>
+</distributionManagement>
+
+</project>
